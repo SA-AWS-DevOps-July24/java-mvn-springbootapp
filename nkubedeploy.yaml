@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nisary-deploy
+  labels:
+    app: nisary-deploy-lbl
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nisary-app
+  template:
+    metadata:
+      labels:
+        app: nisary-app
+    spec:
+      containers:
+      - name: nisary-container
+        image: nisary123/java-sa-appimg
+        ports:
+        - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nisary-np-service
+  labels:
+    app: nisary-app
+spec:
+  selector:
+    app: nisary-deploy-lbl
+
+  type: NodePort
+  ports:
+  - nodePort: 31028
+    port: 8080
+    targetPort: 8080
