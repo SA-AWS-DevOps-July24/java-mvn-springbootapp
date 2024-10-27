@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: loksai-eta-container
-        image: loksaieta/sa-wd-webapp
+        image: chaithra195/banking-javamvnimg
         ports:
         - containerPort: 8080
 ---
