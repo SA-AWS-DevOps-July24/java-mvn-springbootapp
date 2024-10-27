@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: loksai-eta-container
-        image: loksaieta/sa-wd-webapp
+        image: loksaieta/sa-wd-weghh
         ports:
         - containerPort: 8080
 ---
