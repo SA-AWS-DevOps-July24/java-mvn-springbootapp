@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: loksai-eta-deploy
   labels:
-    app: loksai-eta-deploy-lbl
+    app: loksai-eta-deploy
 spec:
   replicas: 3
   selector:
@@ -28,7 +28,7 @@ metadata:
     app: loksai-eta-app
 spec:
   selector:
-    app: loksai-eta-deploy-lbl
+    app: loksai-eta-deploy
 
   type: NodePort
   ports:
