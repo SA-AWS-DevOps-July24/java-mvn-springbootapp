@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chaithra-deploy
+  labels:
+    app: chaithra-deploy-lbl  # Label for the deployment itself
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: chaithra-app  # This label must match the pod template labels
+  template:
+    metadata:
+      labels:
+        app: chaithra-app  # This label should match the service selector
+    spec:
+      containers:
+      - name: chaithra-container
+        image: chaithra195/banking-javamvnimg
+        ports:
+        - containerPort: 8080  # The port that the container listens on
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: chaithra-np-service
+  labels:
+    app: chaithra-app  # This can be used for identification; not critical for functionality
+spec:
+  selector:
+    app: chaithra-app  # This must match the pod template label
+  type: NodePort
+  ports:
+  - nodePort: 32080  # External port to access the service
+    port: 8080       # Port exposed by the service
+    targetPort: 8080  # Port that the container listens on
